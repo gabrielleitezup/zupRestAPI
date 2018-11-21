@@ -1,6 +1,8 @@
 package com.zup.br.CustomerAPI.controllers;
 
 import com.zup.br.CustomerAPI.model.Customer;
+import com.zup.br.CustomerAPI.pagination.JSONPage;
+import com.zup.br.CustomerAPI.pagination.PageImplementation;
 import com.zup.br.CustomerAPI.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,8 +27,9 @@ public class CustomerController {
     }
 
     @GetMapping("/customers")
-    public Page<Customer> read(Pageable pageable) {
-        return customerRepository.findAll(pageable);
+    public JSONPage read(Pageable pageable) {
+        Page<Customer> customers = customerRepository.findAll(pageable);
+        return PageImplementation.loadPage(customers, "customers");
     }
 
     @PutMapping("/customers/{id}")
@@ -45,11 +48,11 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/search")
-    public Page<Customer> findByName(
+    public JSONPage findByName(
             Pageable pageable,
             @RequestParam(value = "name", required = true) String name) {
-
-        return customerRepository.findByNameCustomer(pageable, name);
+        Page<Customer> customers = customerRepository.findByNameCustomer(pageable, name);
+        return PageImplementation.loadPage(customers, "customers");
     }
 
     @DeleteMapping("/customers/{id}")

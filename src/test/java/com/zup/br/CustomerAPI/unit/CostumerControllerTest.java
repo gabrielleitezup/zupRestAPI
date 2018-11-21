@@ -51,8 +51,8 @@ public class CostumerControllerTest {
 
         mockMvc.perform(get("/customers"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$.content.[0].name", Matchers.is("Gabriel")));
+                .andExpect(jsonPath("$._embedded.customers", Matchers.hasSize(1)))
+                .andExpect(jsonPath("$._embedded.customers.[0].name", Matchers.is("Gabriel")));
     }
 
     @Test
@@ -131,8 +131,8 @@ public class CostumerControllerTest {
         mockMvc.perform(get("/customers/search").param("name", nameFind))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(jsonPath("$.content", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$.content.[0].name", Matchers.is("Gabriel")));
+                .andExpect(jsonPath("$._embedded.customers", Matchers.hasSize(1)))
+                .andExpect(jsonPath("$._embedded.customers.[0].name", Matchers.is("Gabriel")));
     }
 
     @Test

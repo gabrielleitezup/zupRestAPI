@@ -1,8 +1,10 @@
 package com.zup.br.CustomerAPI.controllers;
 
 import com.zup.br.CustomerAPI.model.City;
+import com.zup.br.CustomerAPI.pagination.JSONPage;
 import com.zup.br.CustomerAPI.repository.CityRepository;
 
+import com.zup.br.CustomerAPI.pagination.PageImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,8 +28,9 @@ public class CityController {
     }
 
     @GetMapping("/cities")
-    public Page<City> read(Pageable pageable) {
-        return cityRepository.findAll(pageable);
+    public JSONPage read(Pageable pageable) {
+        Page<City> cities = cityRepository.findAll(pageable);
+        return PageImplementation.loadPage(cities, "cities");
     }
 
     @PutMapping("/cities/{id}")
@@ -46,11 +49,12 @@ public class CityController {
     }
 
     @GetMapping("/cities/search")
-    public Page<City> findByName(
+    public JSONPage findByName(
             Pageable pageable,
             @RequestParam(value = "name", required = true) String name) {
+        Page<City> cities = cityRepository.findByNameCity(pageable, name);
 
-        return cityRepository.findByNameCity(pageable, name);
+        return PageImplementation.loadPage(cities, "cities");
     }
 
     @DeleteMapping("/cities/{id}")

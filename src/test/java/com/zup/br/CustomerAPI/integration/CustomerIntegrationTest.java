@@ -69,6 +69,19 @@ public class CustomerIntegrationTest {
     }
 
     @Test
+    public void testCreateEmptyCustomer() throws Exception {
+        String jsonContent = IOUtils.toString(getClass().getClassLoader().getResourceAsStream("payload/EmptyCustomer.json"));
+        String errorMessage = "nameCustomer:must not be blank";
+
+        this.mockMvc.perform(post("/customers")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonContent))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("message", Matchers.is(errorMessage)))
+                .andDo(print());
+    }
+
+    @Test
     public void testUpdateACustomer() throws Exception {
         Customer test = saveACustomer();
         City cityTest = saveCity();
@@ -111,7 +124,6 @@ public class CustomerIntegrationTest {
                 .andExpect(status().isOk())
                 .andDo(print());
     }
-
 
     private Customer saveACustomer() {
         Customer customer = new Customer("BIRL", saveCity());

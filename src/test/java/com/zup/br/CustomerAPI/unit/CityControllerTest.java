@@ -49,8 +49,8 @@ public class CityControllerTest {
 
         mockMvc.perform(get("/cities"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$.content.[0].name", Matchers.is("Uber")));
+                .andExpect(jsonPath("$._embedded.cities", Matchers.hasSize(1)))
+                .andExpect(jsonPath("$._embedded.cities.[0].name", Matchers.is("Uber")));
     }
 
     @Test
@@ -124,8 +124,8 @@ public class CityControllerTest {
 
         mockMvc.perform(get("/cities/search").param("name", nameFind))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.content", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$.content.[0].name", Matchers.is(nameFind)));
+                .andExpect(jsonPath("$._embedded.cities", Matchers.hasSize(1)))
+                .andExpect(jsonPath("$._embedded.cities.[0].name", Matchers.is(nameFind)));
 
     }
 
