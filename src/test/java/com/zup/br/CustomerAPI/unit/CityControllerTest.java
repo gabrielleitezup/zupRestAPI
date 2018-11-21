@@ -91,7 +91,7 @@ public class CityControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(edit.getId())))
-                .andExpect(jsonPath("name", Matchers.is(edit.getNameCity())));
+                .andExpect(jsonPath("name", Matchers.is(edit.getName())));
 
     }
 
@@ -102,7 +102,7 @@ public class CityControllerTest {
 
         Optional<City> findByIdResult = Optional.of(result);
 
-        int id = 4;
+        long id = 4;
 
         when(cityRepository.findById(id)).thenReturn(findByIdResult);
 
@@ -120,7 +120,7 @@ public class CityControllerTest {
 
         PageImpl page = new PageImpl(search);
 
-        when(cityRepository.findByNameCity(notNull(), notNull())).thenReturn(page);
+        when(cityRepository.findByNameContaining(notNull(), notNull())).thenReturn(page);
 
         mockMvc.perform(get("/cities/search").param("name", nameFind))
                 .andExpect(status().isOk())

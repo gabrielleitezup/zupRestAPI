@@ -118,8 +118,8 @@ public class CityIntegrationTest {
     @Test
     public void testFindCityById() throws Exception {
         City result = saveACity();
-        int id = result.getId();
-        String name = result.getNameCity();
+        long id = result.getId();
+        String name = result.getName();
 
         this.mockMvc.perform(get("/cities/" + id))
                 .andExpect(status().isOk())
@@ -132,7 +132,7 @@ public class CityIntegrationTest {
         City deleted = saveACity();
         assertThat(deleted.getId()).isNotNull();
 
-        int id = deleted.getId();
+        long id = deleted.getId();
 
         this.mockMvc.perform(delete("/cities/" + id))
                 .andExpect(status().isOk())

@@ -7,5 +7,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface CustomerRepository extends PagingAndSortingRepository<Customer, Integer> {
 
-    Page<Customer> findByNameCustomer(Pageable pageable, String name);
+    Page<Customer> findByName(Pageable pageable, String name);
 }

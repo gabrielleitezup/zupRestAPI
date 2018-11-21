@@ -29,6 +29,7 @@ public class CityController {
 
     @GetMapping("/cities")
     public JSONPage read(Pageable pageable) {
+//        return cityRepository.findAll(pageable);
         Page<City> cities = cityRepository.findAll(pageable);
         return PageImplementation.loadPage(cities, "cities");
     }
@@ -44,21 +45,21 @@ public class CityController {
     }
 
     @GetMapping("/cities/{id}")
-    public Optional<City> findById(@PathVariable int id) {
+    public Optional<City> findById(@PathVariable long id) {
         return cityRepository.findById(id);
     }
 
-    @GetMapping("/cities/search")
+    @GetMapping("/cities/search/findByNameIgnoreCaseContaining")
     public JSONPage findByName(
             Pageable pageable,
             @RequestParam(value = "name", required = true) String name) {
-        Page<City> cities = cityRepository.findByNameCity(pageable, name);
+        Page<City> cities = cityRepository.findByNameContaining(pageable, name);
 
         return PageImplementation.loadPage(cities, "cities");
     }
 
     @DeleteMapping("/cities/{id}")
-    public void delete(@PathVariable Integer id) {
+    public void delete(@PathVariable long id) {
         cityRepository.deleteById(id);
     }
 

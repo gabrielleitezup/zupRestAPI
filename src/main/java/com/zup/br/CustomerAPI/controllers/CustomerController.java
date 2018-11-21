@@ -51,7 +51,7 @@ public class CustomerController {
     public JSONPage findByName(
             Pageable pageable,
             @RequestParam(value = "name", required = true) String name) {
-        Page<Customer> customers = customerRepository.findByNameCustomer(pageable, name);
+        Page<Customer> customers = customerRepository.findByName(pageable, name);
         return PageImplementation.loadPage(customers, "customers");
     }
 

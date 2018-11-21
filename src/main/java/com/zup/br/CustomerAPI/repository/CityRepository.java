@@ -4,9 +4,9 @@ import com.zup.br.CustomerAPI.model.City;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CityRepository extends PagingAndSortingRepository<City, Integer> {
+public interface CityRepository extends JpaRepository<City, Long> {
 
-    Page<City> findByNameCity(Pageable pageable, String name);
+    Page<City> findByNameContaining(Pageable pageable, String name);
 }

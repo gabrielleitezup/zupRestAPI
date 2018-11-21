@@ -94,8 +94,8 @@ public class CostumerControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(edit.getId())))
-                .andExpect(jsonPath("name", Matchers.is(edit.getNameCustomer())))
-                .andExpect(jsonPath("city.name", Matchers.is(edit.getCity().getNameCity())));
+                .andExpect(jsonPath("name", Matchers.is(edit.getName())))
+                .andExpect(jsonPath("city.name", Matchers.is(edit.getCity().getName())));
 
     }
 
@@ -120,13 +120,13 @@ public class CostumerControllerTest {
     @Test
     public void testFindByName() throws Exception {
         Customer result = new Customer("Gabriel", saveCity());
-        String nameFind = result.getNameCustomer();
+        String nameFind = result.getName();
 
         List<Customer> customers = Arrays.asList(result);
 
         PageImpl findByNameResult = new PageImpl(customers);
 
-        when(customerRepository.findByNameCustomer(notNull(), notNull())).thenReturn(findByNameResult);
+        when(customerRepository.findByName(notNull(), notNull())).thenReturn(findByNameResult);
 
         mockMvc.perform(get("/customers/search").param("name", nameFind))
                 .andExpect(status().isOk())

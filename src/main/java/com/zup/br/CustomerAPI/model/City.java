@@ -1,10 +1,7 @@
 package com.zup.br.CustomerAPI.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -12,36 +9,35 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @NotBlank
-    @JsonProperty("name")
-    private String nameCity;
+    private String name;
 
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
     private List<Customer> customers;
 
-    public City(String nameCity) {
-        this.nameCity = nameCity;
+    public City(@NotBlank String name) {
+        this.name = name;
     }
 
     public City() {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getNameCity() {
-        return nameCity;
+    public String getName() {
+        return name;
     }
 
-    public void setNameCity(String nameCity) {
-        this.nameCity = nameCity;
+    public void setName(String name) {
+        this.name = name;
     }
 }

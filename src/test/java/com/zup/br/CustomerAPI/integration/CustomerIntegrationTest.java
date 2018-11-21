@@ -88,7 +88,7 @@ public class CustomerIntegrationTest {
         int id = test.getId();
 
         Map<String, Object> data = new HashMap<>();
-        Map<String, Integer> dataCity = new HashMap<>();
+        Map<String, Long> dataCity = new HashMap<>();
         dataCity.put("id", cityTest.getId());
         data.put("name", "Juliel");
         data.put("city", cityTest);
@@ -106,7 +106,7 @@ public class CustomerIntegrationTest {
     public void testFindCustomerById() throws Exception {
         Customer test = saveACustomer();
         int id = test.getId();
-        String name = test.getNameCustomer();
+        String name = test.getName();
 
         this.mockMvc.perform(get("/customers/" + id))
                 .andExpect(status().isOk())

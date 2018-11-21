@@ -1,7 +1,5 @@
 package com.zup.br.CustomerAPI.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -14,27 +12,26 @@ public class Customer {
     private int id;
 
     @NotBlank
-    @JsonProperty("name")
-    private String nameCustomer;
+    private String name;
 
     @NotNull
     @ManyToOne
     private City city;
 
-    public Customer(String nameCustomer, City city) {
-        this.nameCustomer = nameCustomer;
+    public Customer(String name, City city) {
+        this.name = name;
         this.city = city;
     }
 
     public Customer() {
     }
 
-    public String getNameCustomer() {
-        return nameCustomer;
+    public String getName() {
+        return name;
     }
 
-    public void setNameCustomer(String nameCustomer) {
-        this.nameCustomer = nameCustomer;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
