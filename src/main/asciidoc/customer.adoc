@@ -1,0 +1,14 @@
+
+== Contato
+
+=== Buscar Customers
+include::{snippets}/test-find-all-customers/http-request.adoc[]
+include::{snippets}/test-find-all-customers/http-response.adoc[]
+
+=== Criar um Customer
+include::{snippets}/test-create-a-customer/http-request.adoc[]
+include::{snippets}/test-create-a-customer/http-response.adoc[]
+
+=== Modificar um Customer
+include::{snippets}/test-update-a-customer/http-request.adoc[]
+include::{snippets}/test-update-a-customer/http-response.adoc[]

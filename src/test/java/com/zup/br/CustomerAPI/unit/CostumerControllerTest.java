@@ -126,9 +126,9 @@ public class CostumerControllerTest {
 
         PageImpl findByNameResult = new PageImpl(customers);
 
-        when(customerRepository.findByName(notNull(), notNull())).thenReturn(findByNameResult);
+        when(customerRepository.findByNameContaining(notNull(), notNull())).thenReturn(findByNameResult);
 
-        mockMvc.perform(get("/customers/search").param("name", nameFind))
+        mockMvc.perform(get("/customers/search/findByNameIgnoreCaseContaining").param("name", nameFind))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(jsonPath("$._embedded.customers", Matchers.hasSize(1)))

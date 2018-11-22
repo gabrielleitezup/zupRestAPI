@@ -1,23 +1,20 @@
 package com.zup.br.CustomerAPI.integration;
 
+import com.zup.br.CustomerAPI.AbstractTest;
 import com.zup.br.CustomerAPI.model.City;
 import com.zup.br.CustomerAPI.model.Customer;
-import com.zup.br.CustomerAPI.repository.CityRepository;
-import com.zup.br.CustomerAPI.repository.CustomerRepository;
+
 import net.minidev.json.JSONObject;
-import org.apache.commons.io.IOUtils;
+
 import org.hamcrest.Matchers;
-import org.junit.Before;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,23 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class CustomerIntegrationTest {
-
-    @Autowired
-    CustomerRepository customerRepository;
-
-    @Autowired
-    CityRepository cityRepository;
-
-    @Autowired
-    WebApplicationContext context;
-
-    MockMvc mockMvc;
-
-    @Before
-    public void initializer() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();
-    }
+public class CustomerIntegrationTest extends AbstractTest {
 
     @Test
     public void testFindAllCustomers() throws Exception {
@@ -59,23 +40,36 @@ public class CustomerIntegrationTest {
 
     @Test
     public void testCreateACustomer() throws Exception {
-        String jsonContent = IOUtils.toString(getClass().getClassLoader().getResourceAsStream("payload/Customer.json"));
+        long id = saveCity().getId();
+
+        Map<String, Object> data = new HashMap<>();
+        Map<String, Long> dataCity = new HashMap<>();
+        dataCity.put("id", id);
+        data.put("name", "Juliel");
+        data.put("city", dataCity);
 
         this.mockMvc.perform(post("/customers")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonContent))
+                .content(JSONObject.toJSONString(data)))
                 .andExpect(status().isCreated())
                 .andDo(print());
     }
 
     @Test
     public void testCreateEmptyCustomer() throws Exception {
-        String jsonContent = IOUtils.toString(getClass().getClassLoader().getResourceAsStream("payload/EmptyCustomer.json"));
-        String errorMessage = "nameCustomer:must not be blank";
+        long id = saveCity().getId();
+
+        Map<String, Object> data = new HashMap<>();
+        Map<String, Long> dataCity = new HashMap<>();
+        dataCity.put("id", id);
+        data.put("name", "");
+        data.put("city", dataCity);
+
+        String errorMessage = "name:must not be blank";
 
         this.mockMvc.perform(post("/customers")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonContent))
+                .content(JSONObject.toJSONString(data)))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("message", Matchers.is(errorMessage)))
                 .andDo(print());

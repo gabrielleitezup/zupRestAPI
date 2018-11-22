@@ -1,5 +1,6 @@
 package com.zup.br.CustomerAPI.integration;
 
+import com.zup.br.CustomerAPI.AbstractTest;
 import com.zup.br.CustomerAPI.model.City;
 import com.zup.br.CustomerAPI.repository.CityRepository;
 
@@ -31,20 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-public class CityIntegrationTest {
-
-    @Autowired
-    CityRepository cityRepository;
-
-    @Autowired
-    WebApplicationContext context;
-
-    MockMvc mockMvc;
-
-    @Before
-    public void initializer() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();
-    }
+public class CityIntegrationTest extends AbstractTest {
 
     @Test
     public void testFindAllCities() throws Exception {
@@ -123,7 +111,7 @@ public class CityIntegrationTest {
 
         this.mockMvc.perform(get("/cities/" + id))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", Matchers.is(id)))
+                .andExpect(jsonPath("id", Matchers.is((int)id)))
                 .andExpect(jsonPath("name", Matchers.is(name)));
     }
 

@@ -47,11 +47,11 @@ public class CustomerController {
         return customerRepository.findById(id);
     }
 
-    @GetMapping("/customers/search")
+    @GetMapping("/customers/search/findByNameIgnoreCaseContaining")
     public JSONPage findByName(
             Pageable pageable,
             @RequestParam(value = "name", required = true) String name) {
-        Page<Customer> customers = customerRepository.findByName(pageable, name);
+        Page<Customer> customers = customerRepository.findByNameContaining(pageable, name);
         return PageImplementation.loadPage(customers, "customers");
     }
 

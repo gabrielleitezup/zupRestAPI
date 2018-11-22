@@ -1,6 +1,7 @@
 package com.zup.br.CustomerAPI.unit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zup.br.CustomerAPI.AbstractTest;
 import com.zup.br.CustomerAPI.controllers.CityController;
 import com.zup.br.CustomerAPI.model.City;
 import com.zup.br.CustomerAPI.repository.CityRepository;
@@ -90,7 +91,7 @@ public class CityControllerTest {
                 .characterEncoding("utf-8"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", Matchers.is(edit.getId())))
+                .andExpect(jsonPath("id", Matchers.is((int)edit.getId())))
                 .andExpect(jsonPath("name", Matchers.is(edit.getName())));
 
     }
@@ -108,7 +109,7 @@ public class CityControllerTest {
 
         mockMvc.perform(get("/cities/" + id))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", Matchers.is(id)))
+                .andExpect(jsonPath("id", Matchers.is((int)id)))
                 .andExpect(jsonPath("name", Matchers.is("TestCity")));
     }
 
@@ -122,7 +123,7 @@ public class CityControllerTest {
 
         when(cityRepository.findByNameContaining(notNull(), notNull())).thenReturn(page);
 
-        mockMvc.perform(get("/cities/search").param("name", nameFind))
+        mockMvc.perform(get("/cities/search/findByNameIgnoreCaseContaining").param("name", nameFind))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$._embedded.cities", Matchers.hasSize(1)))
                 .andExpect(jsonPath("$._embedded.cities.[0].name", Matchers.is(nameFind)));
