@@ -43,3 +43,4 @@ Os códigos HTTP suportados são:
 Os recursos da API V1 são detalhados nesta seção.
 
 include::customer.adoc[]
+include::cities.adoc[]

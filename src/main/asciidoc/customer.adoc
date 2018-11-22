@@ -1,5 +1,5 @@
 
-== Contato
+== Customers
 
 === Buscar Customers
 include::{snippets}/test-find-all-customers/http-request.adoc[]
@@ -12,3 +12,11 @@ include::{snippets}/test-create-a-customer/http-response.adoc[]
 === Modificar um Customer
 include::{snippets}/test-update-a-customer/http-request.adoc[]
 include::{snippets}/test-update-a-customer/http-response.adoc[]
+
+=== Deletar um Customer
+include::{snippets}/test-delete-customer/http-request.adoc[]
+include::{snippets}/test-delete-customer/http-response.adoc[]
+
+=== Buscar um Customer pelo ID
+include::{snippets}/test-find-customer-by-id/http-request.adoc[]
+include::{snippets}/test-find-customer-by-id/http-response.adoc[]
