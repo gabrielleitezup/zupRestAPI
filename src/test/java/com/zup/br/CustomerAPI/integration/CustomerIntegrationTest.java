@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -93,6 +94,28 @@ public class CustomerIntegrationTest extends AbstractTest {
                 .content(JSONObject.toJSONString(data))
                 .characterEncoding("utf-8"))
                 .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    public void testUpdateACustomerWithoutId() throws Exception {
+//        Customer test = saveACustomer();
+        City cityTest = saveCity();
+        Random rand = new Random();
+        int id = rand.nextInt(50);
+
+        Map<String, Object> data = new HashMap<>();
+        Map<String, Long> dataCity = new HashMap<>();
+        dataCity.put("id", cityTest.getId());
+        data.put("name", "Juliel");
+        data.put("city", cityTest);
+
+
+        this.mockMvc.perform(put("/customers/" + id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JSONObject.toJSONString(data))
+                .characterEncoding("utf-8"))
+                .andExpect(status().isBadRequest())
                 .andDo(print());
     }
 
