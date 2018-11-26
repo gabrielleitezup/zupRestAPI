@@ -1,10 +1,10 @@
-package com.zup.br.CustomerAPI.unit;
+package com.zup.br.customerapi.unit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zup.br.CustomerAPI.controllers.CustomerController;
-import com.zup.br.CustomerAPI.model.City;
-import com.zup.br.CustomerAPI.model.Customer;
-import com.zup.br.CustomerAPI.repository.CustomerRepository;
+import com.zup.br.customerapi.controllers.CustomerController;
+import com.zup.br.customerapi.model.City;
+import com.zup.br.customerapi.model.Customer;
+import com.zup.br.customerapi.repository.CustomerRepository;
 import org.apache.commons.io.IOUtils;
 import org.hamcrest.Matchers;
 import org.junit.Test;

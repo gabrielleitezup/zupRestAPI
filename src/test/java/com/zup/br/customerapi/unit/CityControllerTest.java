@@ -1,10 +1,9 @@
-package com.zup.br.CustomerAPI.unit;
+package com.zup.br.customerapi.unit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zup.br.CustomerAPI.AbstractTest;
-import com.zup.br.CustomerAPI.controllers.CityController;
-import com.zup.br.CustomerAPI.model.City;
-import com.zup.br.CustomerAPI.repository.CityRepository;
+import com.zup.br.customerapi.controllers.CityController;
+import com.zup.br.customerapi.model.City;
+import com.zup.br.customerapi.repository.CityRepository;
 
 import org.apache.commons.io.IOUtils;
 import org.hamcrest.Matchers;
@@ -32,6 +31,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(CityController.class)
 public class CityControllerTest {
+
+    private static final String cityTest = "TestCity";
 
     @MockBean
     CityRepository cityRepository;
@@ -98,7 +99,7 @@ public class CityControllerTest {
 
     @Test
     public void testFindById() throws Exception {
-        City result = new City("TestCity");
+        City result = new City(cityTest);
         result.setId(4);
 
         Optional<City> findByIdResult = Optional.of(result);
@@ -110,14 +111,14 @@ public class CityControllerTest {
         mockMvc.perform(get("/cities/" + id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is((int)id)))
-                .andExpect(jsonPath("name", Matchers.is("TestCity")));
+                .andExpect(jsonPath("name", Matchers.is(cityTest)));
     }
 
     @Test
     public void testFindByName() throws Exception {
-        City result = new City("TestCity");
+        City result = new City(cityTest);
         List<City> search = Arrays.asList(result);
-        String nameFind = "TestCity";
+        String nameFind = cityTest;
 
         PageImpl page = new PageImpl(search);
 

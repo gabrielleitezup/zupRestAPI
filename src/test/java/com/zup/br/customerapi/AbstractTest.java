@@ -1,7 +1,7 @@
-package com.zup.br.CustomerAPI;
+package com.zup.br.customerapi;
 
-import com.zup.br.CustomerAPI.repository.CityRepository;
-import com.zup.br.CustomerAPI.repository.CustomerRepository;
+import com.zup.br.customerapi.repository.CityRepository;
+import com.zup.br.customerapi.repository.CustomerRepository;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.runner.RunWith;

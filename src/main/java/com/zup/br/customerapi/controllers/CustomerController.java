@@ -1,9 +1,9 @@
-package com.zup.br.CustomerAPI.controllers;
+package com.zup.br.customerapi.controllers;
 
-import com.zup.br.CustomerAPI.model.Customer;
-import com.zup.br.CustomerAPI.pagination.JSONPage;
-import com.zup.br.CustomerAPI.pagination.PageImplementation;
-import com.zup.br.CustomerAPI.repository.CustomerRepository;
+import com.zup.br.customerapi.model.Customer;
+import com.zup.br.customerapi.pagination.JSONPage;
+import com.zup.br.customerapi.pagination.PageImplementation;
+import com.zup.br.customerapi.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

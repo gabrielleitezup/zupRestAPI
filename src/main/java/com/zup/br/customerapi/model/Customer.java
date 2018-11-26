@@ -1,4 +1,4 @@
-package com.zup.br.CustomerAPI.model;
+package com.zup.br.customerapi.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

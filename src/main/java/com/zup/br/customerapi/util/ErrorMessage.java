@@ -1,4 +1,4 @@
-package com.zup.br.CustomerAPI.util;
+package com.zup.br.customerapi.util;
 
 public class ErrorMessage {
 

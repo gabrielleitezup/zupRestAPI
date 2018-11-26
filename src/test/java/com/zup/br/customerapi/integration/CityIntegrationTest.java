@@ -1,7 +1,7 @@
-package com.zup.br.CustomerAPI.integration;
+package com.zup.br.customerapi.integration;
 
-import com.zup.br.CustomerAPI.AbstractTest;
-import com.zup.br.CustomerAPI.model.City;
+import com.zup.br.customerapi.AbstractTest;
+import com.zup.br.customerapi.model.City;
 
 import net.minidev.json.JSONObject;
 import org.apache.commons.io.IOUtils;

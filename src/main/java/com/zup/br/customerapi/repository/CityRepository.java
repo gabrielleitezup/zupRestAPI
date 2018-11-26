@@ -1,6 +1,6 @@
-package com.zup.br.CustomerAPI.repository;
+package com.zup.br.customerapi.repository;
 
-import com.zup.br.CustomerAPI.model.City;
+import com.zup.br.customerapi.model.City;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

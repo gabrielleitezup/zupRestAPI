@@ -1,4 +1,4 @@
-package com.zup.br.CustomerAPI.adapter;
+package com.zup.br.customerapi.adapter;
 
 import org.springframework.stereotype.Component;
 

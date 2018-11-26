@@ -1,4 +1,4 @@
-package com.zup.br.CustomerAPI.pagination;
+package com.zup.br.customerapi.pagination;
 
 import org.springframework.data.domain.Page;
 

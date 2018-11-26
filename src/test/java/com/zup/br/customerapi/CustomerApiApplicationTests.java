@@ -1,4 +1,4 @@
-package com.zup.br.CustomerAPI;
+package com.zup.br.customerapi;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

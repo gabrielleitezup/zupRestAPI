@@ -1,6 +1,6 @@
-package com.zup.br.CustomerAPI.controllers;
+package com.zup.br.customerapi.controllers;
 
-import com.zup.br.CustomerAPI.util.ErrorMessage;
+import com.zup.br.customerapi.util.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
