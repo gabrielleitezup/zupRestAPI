@@ -28,6 +28,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 public class CityIntegrationTest extends AbstractTest {
 
+    private static final String CHARACTER_ENCOND = "utf-8";
+
     @Test
     public void testFindAllCities() throws Exception {
         saveAllCities();
@@ -58,7 +60,7 @@ public class CityIntegrationTest extends AbstractTest {
         this.mockMvc.perform(put("/cities/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JSONObject.toJSONString(data))
-                .characterEncoding("utf-8"))
+                .characterEncoding(CHARACTER_ENCOND))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(id)))
                 .andDo(print());
@@ -76,7 +78,7 @@ public class CityIntegrationTest extends AbstractTest {
         this.mockMvc.perform(put("/cities/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JSONObject.toJSONString(data))
-                .characterEncoding("utf-8"))
+                .characterEncoding(CHARACTER_ENCOND))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(id)))
                 .andDo(print());
@@ -92,7 +94,7 @@ public class CityIntegrationTest extends AbstractTest {
         this.mockMvc.perform(put("/cities/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JSONObject.toJSONString(data))
-                .characterEncoding("utf-8"))
+                .characterEncoding(CHARACTER_ENCOND))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }

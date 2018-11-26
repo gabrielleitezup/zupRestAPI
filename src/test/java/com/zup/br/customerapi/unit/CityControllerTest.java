@@ -1,6 +1,7 @@
 package com.zup.br.customerapi.unit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.RuntimeJsonMappingException;
 import com.zup.br.customerapi.controllers.CityController;
 import com.zup.br.customerapi.model.City;
 import com.zup.br.customerapi.repository.CityRepository;
@@ -10,6 +11,7 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import org.junit.runner.manipulation.NoTestsRemainException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

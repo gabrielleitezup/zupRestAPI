@@ -70,7 +70,7 @@ public class CostumerControllerTest {
                 .content(jsonPayload))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("city.name", Matchers.is("Uberlandia")))
+                .andExpect(jsonPath("city.name", Matchers.is(saveCity().getName())))
                 .andExpect(jsonPath("id", Matchers.notNullValue()));
 
     }
@@ -116,7 +116,7 @@ public class CostumerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(id)))
                 .andExpect(jsonPath("name", Matchers.is(RANDOM_NAME)))
-                .andExpect(jsonPath("city.name", Matchers.is("Uberlandia")));
+                .andExpect(jsonPath("city.name", Matchers.is(saveCity().getName())));
     }
 
     @Test
