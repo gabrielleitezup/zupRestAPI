@@ -33,6 +33,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CustomerController.class)
 public class CostumerControllerTest {
 
+    private static final String CITY_PATH = "city.name";
+
     private static final String RANDOM_NAME = "Gabriel";
 
     @MockBean
@@ -70,7 +72,7 @@ public class CostumerControllerTest {
                 .content(jsonPayload))
                 .andDo(print())
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("city.name", Matchers.is(saveCity().getName())))
+                .andExpect(jsonPath(CITY_PATH, Matchers.is(saveCity().getName())))
                 .andExpect(jsonPath("id", Matchers.notNullValue()));
 
     }
@@ -97,7 +99,7 @@ public class CostumerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(edit.getId())))
                 .andExpect(jsonPath("name", Matchers.is(edit.getName())))
-                .andExpect(jsonPath("city.name", Matchers.is(edit.getCity().getName())));
+                .andExpect(jsonPath(CITY_PATH, Matchers.is(edit.getCity().getName())));
 
     }
 
@@ -116,7 +118,7 @@ public class CostumerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(id)))
                 .andExpect(jsonPath("name", Matchers.is(RANDOM_NAME)))
-                .andExpect(jsonPath("city.name", Matchers.is(saveCity().getName())));
+                .andExpect(jsonPath(CITY_PATH, Matchers.is(saveCity().getName())));
     }
 
     @Test

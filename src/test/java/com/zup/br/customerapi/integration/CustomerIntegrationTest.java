@@ -30,6 +30,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 public class CustomerIntegrationTest extends AbstractTest {
 
+    private static final String RANDOM_CUSTOMER = "Juliel";
+
     @Test
     public void testFindAllCustomers() throws Exception {
         saveAllCustomers();
@@ -46,7 +48,7 @@ public class CustomerIntegrationTest extends AbstractTest {
         Map<String, Object> data = new HashMap<>();
         Map<String, Long> dataCity = new HashMap<>();
         dataCity.put("id", id);
-        data.put("name", "Juliel");
+        data.put("name", RANDOM_CUSTOMER);
         data.put("city", dataCity);
 
         this.mockMvc.perform(post("/customers")
@@ -85,7 +87,7 @@ public class CustomerIntegrationTest extends AbstractTest {
         Map<String, Object> data = new HashMap<>();
         Map<String, Long> dataCity = new HashMap<>();
         dataCity.put("id", cityTest.getId());
-        data.put("name", "Juliel");
+        data.put("name", RANDOM_CUSTOMER);
         data.put("city", cityTest);
 
 
@@ -106,7 +108,7 @@ public class CustomerIntegrationTest extends AbstractTest {
         Map<String, Object> data = new HashMap<>();
         Map<String, Long> dataCity = new HashMap<>();
         dataCity.put("id", cityTest.getId());
-        data.put("name", "Juliel");
+        data.put("name", RANDOM_CUSTOMER);
         data.put("city", cityTest);
 
 

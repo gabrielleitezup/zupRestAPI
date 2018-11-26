@@ -1,6 +1,6 @@
 package com.zup.br.customerapi.model;
 
-import javax.persistence.*;
+import javax.persistence.   *;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
