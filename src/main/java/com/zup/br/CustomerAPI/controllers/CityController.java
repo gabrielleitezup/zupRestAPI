@@ -29,7 +29,6 @@ public class CityController {
 
     @GetMapping("/cities")
     public JSONPage read(Pageable pageable) {
-//        return cityRepository.findAll(pageable);
         Page<City> cities = cityRepository.findAll(pageable);
         return PageImplementation.loadPage(cities, "cities");
     }

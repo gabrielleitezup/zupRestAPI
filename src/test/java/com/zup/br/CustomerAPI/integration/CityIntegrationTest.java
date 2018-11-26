@@ -28,6 +28,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 public class CityIntegrationTest extends AbstractTest {
 
+    private final String PATH = "/cities/";
+    private final String CHTR_ENCOND = "utf-8";
+
     @Test
     public void testFindAllCities() throws Exception {
         saveAllCities();
@@ -55,10 +58,10 @@ public class CityIntegrationTest extends AbstractTest {
         Map<String, String> data = new HashMap<>();
         data.put("name", "Aden");
 
-        this.mockMvc.perform(put("/cities/" + id)
+        this.mockMvc.perform(put(PATH + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JSONObject.toJSONString(data))
-                .characterEncoding("utf-8"))
+                .characterEncoding(CHTR_ENCOND))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(id)))
                 .andDo(print());
@@ -73,10 +76,10 @@ public class CityIntegrationTest extends AbstractTest {
         data.put("id", valueOf(121));
         data.put("name", "Aden");
 
-        this.mockMvc.perform(put("/cities/" + id)
+        this.mockMvc.perform(put(PATH + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JSONObject.toJSONString(data))
-                .characterEncoding("utf-8"))
+                .characterEncoding(CHTR_ENCOND))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(id)))
                 .andDo(print());
@@ -89,10 +92,10 @@ public class CityIntegrationTest extends AbstractTest {
         Map<String, String> data = new HashMap<>();
         data.put("name", "Aden");
 
-        this.mockMvc.perform(put("/cities/" + id)
+        this.mockMvc.perform(put(PATH + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JSONObject.toJSONString(data))
-                .characterEncoding("utf-8"))
+                .characterEncoding(CHTR_ENCOND))
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }
@@ -103,7 +106,7 @@ public class CityIntegrationTest extends AbstractTest {
         long id = result.getId();
         String name = result.getName();
 
-        this.mockMvc.perform(get("/cities/" + id))
+        this.mockMvc.perform(get(PATH + id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is((int)id)))
                 .andExpect(jsonPath("name", Matchers.is(name)));
@@ -116,7 +119,7 @@ public class CityIntegrationTest extends AbstractTest {
 
         long id = deleted.getId();
 
-        this.mockMvc.perform(delete("/cities/" + id))
+        this.mockMvc.perform(delete(PATH + id))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
