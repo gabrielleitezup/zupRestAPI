@@ -30,8 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Transactional
 public class CustomerIntegrationTest extends AbstractTest {
 
-    private final String PATH = "/customers/";
-
     @Test
     public void testFindAllCustomers() throws Exception {
         saveAllCustomers();
@@ -91,7 +89,7 @@ public class CustomerIntegrationTest extends AbstractTest {
         data.put("city", cityTest);
 
 
-        this.mockMvc.perform(put(PATH + id)
+        this.mockMvc.perform(put("/customers/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JSONObject.toJSONString(data))
                 .characterEncoding("utf-8"))
@@ -112,7 +110,7 @@ public class CustomerIntegrationTest extends AbstractTest {
         data.put("city", cityTest);
 
 
-        this.mockMvc.perform(put(PATH + id)
+        this.mockMvc.perform(put("/customers/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JSONObject.toJSONString(data))
                 .characterEncoding("utf-8"))
@@ -126,7 +124,7 @@ public class CustomerIntegrationTest extends AbstractTest {
         int id = test.getId();
         String name = test.getName();
 
-        this.mockMvc.perform(get(PATH + id))
+        this.mockMvc.perform(get("/customers/" + id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(id)))
                 .andExpect(jsonPath("name", Matchers.is(name)))
@@ -138,7 +136,7 @@ public class CustomerIntegrationTest extends AbstractTest {
         Customer test = saveACustomer();
         int id = test.getId();
 
-        this.mockMvc.perform(delete(PATH + id))
+        this.mockMvc.perform(delete("/customers/" + id))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
