@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CityController.class)
 public class CityControllerTest {
 
-    private static final String cityTest = "TestCity";
+    private static final String CITYTEST = "TestCity";
 
     @MockBean
     CityRepository cityRepository;
@@ -99,7 +99,7 @@ public class CityControllerTest {
 
     @Test
     public void testFindById() throws Exception {
-        City result = new City(cityTest);
+        City result = new City(CITYTEST);
         result.setId(4);
 
         Optional<City> findByIdResult = Optional.of(result);
@@ -111,14 +111,14 @@ public class CityControllerTest {
         mockMvc.perform(get("/cities/" + id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is((int)id)))
-                .andExpect(jsonPath("name", Matchers.is(cityTest)));
+                .andExpect(jsonPath("name", Matchers.is(CITYTEST)));
     }
 
     @Test
     public void testFindByName() throws Exception {
-        City result = new City(cityTest);
+        City result = new City(CITYTEST);
         List<City> search = Arrays.asList(result);
-        String nameFind = cityTest;
+        String nameFind = CITYTEST;
 
         PageImpl page = new PageImpl(search);
 

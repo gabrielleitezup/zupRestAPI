@@ -11,6 +11,7 @@ public class CustomerApiApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		//Context for REST DOCS
 	}
 
 }

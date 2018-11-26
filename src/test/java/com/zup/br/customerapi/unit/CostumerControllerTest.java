@@ -33,6 +33,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CustomerController.class)
 public class CostumerControllerTest {
 
+    private static final String RANDOM_NAME = "Gabriel";
+
     @MockBean
     CustomerRepository customerRepository;
 
@@ -41,7 +43,7 @@ public class CostumerControllerTest {
 
     @Test
     public void testPaginationCustomer() throws Exception{
-        Customer customer = new Customer("Gabriel", saveCity());
+        Customer customer = new Customer(RANDOM_NAME, saveCity());
 
         List<Customer> customers = Arrays.asList(customer);
 
@@ -52,7 +54,7 @@ public class CostumerControllerTest {
         mockMvc.perform(get("/customers"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$._embedded.customers", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$._embedded.customers.[0].name", Matchers.is("Gabriel")));
+                .andExpect(jsonPath("$._embedded.customers.[0].name", Matchers.is(RANDOM_NAME)));
     }
 
     @Test
@@ -101,7 +103,7 @@ public class CostumerControllerTest {
 
     @Test
     public void testFindById() throws Exception {
-        Customer result = new Customer("Gabriel", saveCity());
+        Customer result = new Customer(RANDOM_NAME, saveCity());
         result.setId(4);
 
         Optional<Customer> findByIdResult = Optional.of(result);
@@ -113,13 +115,13 @@ public class CostumerControllerTest {
         mockMvc.perform(get("/customers/" + id))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", Matchers.is(id)))
-                .andExpect(jsonPath("name", Matchers.is("Gabriel")))
+                .andExpect(jsonPath("name", Matchers.is(RANDOM_NAME)))
                 .andExpect(jsonPath("city.name", Matchers.is("Uberlandia")));
     }
 
     @Test
     public void testFindByName() throws Exception {
-        Customer result = new Customer("Gabriel", saveCity());
+        Customer result = new Customer(RANDOM_NAME, saveCity());
         String nameFind = result.getName();
 
         List<Customer> customers = Arrays.asList(result);
@@ -132,7 +134,7 @@ public class CostumerControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(jsonPath("$._embedded.customers", Matchers.hasSize(1)))
-                .andExpect(jsonPath("$._embedded.customers.[0].name", Matchers.is("Gabriel")));
+                .andExpect(jsonPath("$._embedded.customers.[0].name", Matchers.is(RANDOM_NAME)));
     }
 
     @Test
