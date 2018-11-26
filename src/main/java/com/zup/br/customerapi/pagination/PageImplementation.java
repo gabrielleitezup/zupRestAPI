@@ -10,11 +10,11 @@ public class PageImplementation {
 
         JSONPage jsonPage = new JSONPage();
 
-        HashMap<String, Object> _embeddedContent = new HashMap<>();
+        HashMap<String, Object> embeddedContent = new HashMap<>();
         HashMap<String, Integer> data = new HashMap<>();
 
-        _embeddedContent.put(name, page.getContent());
-        jsonPage.set_embedded(_embeddedContent);
+        embeddedContent.put(name, page.getContent());
+        jsonPage.set_embedded(embeddedContent);
 
         data.put("size", page.getSize());
         data.put("totalElements", (int)page.getTotalElements());

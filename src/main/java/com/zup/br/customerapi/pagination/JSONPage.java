@@ -1,13 +1,14 @@
 package com.zup.br.customerapi.pagination;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class JSONPage {
 
     private HashMap<String, Object> _embedded;
     private HashMap<String, Integer> page;
 
-    public HashMap<String, Object> get_embedded() {
+    public Map<String, Object> get_embedded() {
         return _embedded;
     }
 
@@ -15,7 +16,7 @@ public class JSONPage {
         this._embedded = _embedded;
     }
 
-    public HashMap<String, Integer> getPage() {
+    public Map<String, Integer> getPage() {
         return page;
     }
 

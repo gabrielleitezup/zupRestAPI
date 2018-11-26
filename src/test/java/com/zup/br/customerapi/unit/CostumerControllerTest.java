@@ -147,7 +147,6 @@ public class CostumerControllerTest {
     }
 
     private City saveCity() {
-        City city = new City("Uberlandia");
-        return city;
+        return new City("Uberlandia");
     }
 }
