@@ -20,7 +20,7 @@ public class CityController {
 
     @Autowired
     CityRepository cityRepository;
-
+//modelo anemico
     @PostMapping("/cities")
     @ResponseStatus(HttpStatus.CREATED)
     public City create(@Valid @RequestBody City city) {

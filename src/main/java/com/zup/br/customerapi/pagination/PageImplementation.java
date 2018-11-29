@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class PageImplementation {
 
-    private PageImplementation() {        
+    private PageImplementation() {
     }
 
     public static JSONPage loadPage(Page<?> page, String name) {
